@@ -1,0 +1,36 @@
+{
+  "name": "ai-test-lab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --runInBand",
+    "start": "ts-node src/manual-test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/achchu/ai-test-lab.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/achchu/ai-test-lab/issues"
+  },
+  "homepage": "https://github.com/achchu/ai-test-lab#readme",
+  "dependencies": {
+    "@types/node": "^24.5.2",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node-fetch": "^2.6.13",
+    "dotenv": "^17.2.2",
+    "jest": "^29.7.0",
+    "prettier": "^3.6.2",
+    "ts-jest": "^29.4.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
