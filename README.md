@@ -13,9 +13,8 @@ As AI becomes ubiquitous, we often get overwhelmed by the complexity. This frame
 - **Start simple**: Test text-based LLM responses
 - **Apply existing knowledge**: Traditional testing principles work for AI too
 - **Understand fundamentals**: Temperature, seeds, and how they affect behavior
-- **Build confidence**: Hands-on experience with real AI testing challenges
 
-**This is intentionally simplified.** Focuses on core concepts like `temperature` and `seed`, leaving advanced parameters (`top_k`, `top_p`) for future exploration. The goal is to **learn by doing**, not to build the perfect framework on day one.
+**This is intentionally simplified.** Focuses on core concepts like `temperature` and `seed`, leaving advanced parameters (`top_k`, `top_p`) for future exploration.
 
 ---
 
@@ -78,7 +77,7 @@ npm test -- tests/integration/hallucination.test.ts
 
 ### Temperature
 Controls randomness in AI responses:
-- `0.0` = Deterministic (always same answer)
+- `0.0` = Deterministic (always the same answer)
 - `0.7` = Balanced (default)
 - `1.5` = Creative/varied
 
