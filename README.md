@@ -21,9 +21,9 @@ As AI becomes ubiquitous, we often get overwhelmed by the complexity. This frame
 
 ## What Does This Framework Test?
 
-### 1. Response Quality
-### 2. Consistency & Reproducibility
-### 3. Hallucination Detection
+**1. Response Quality**
+**2. Consistency & Reproducibility**
+**3. Hallucination Detection**
 ---
 
 ## 🛠️ Getting Started
