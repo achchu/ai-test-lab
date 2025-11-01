@@ -21,6 +21,14 @@ function mapOptions(options: GenerateOptions): OllamaOptions {
         ollamaOptions.seed = options.seed;
     }
 
+    if(options.topK !== undefined) {
+        ollamaOptions.top_k = options.topK;
+    }
+
+    if(options.topP !== undefined) {
+        ollamaOptions.top_p = options.topP;
+    }
+
     return ollamaOptions;
 }
 

@@ -47,6 +47,8 @@ export interface GenerateOptions {
     temperature?: number;
     maxTokens?: number;
     seed?: number;
+    topK?: number;
+    topP?: number;
 }
 
 export interface OllamaVersionResponse {

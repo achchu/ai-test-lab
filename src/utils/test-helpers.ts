@@ -174,7 +174,8 @@ export async function generateMultipleResponses<T>(
     generateFn: (prompt: string, options: any) => Promise<T>,
     prompt: string,
     count: number,
-    temperature: number
+    temperature: number,
+    extraOptions?: {top_k?: number; top_p?: number }
 ): Promise<T[]> {
     const responses: T[] = [];
 
@@ -182,6 +183,7 @@ export async function generateMultipleResponses<T>(
         const response = await generateFn(prompt, {
             temperature,
             seed: i,
+            ...extraOptions,
         });
         responses.push(response);
     }
