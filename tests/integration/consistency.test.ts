@@ -110,4 +110,57 @@ describe('AI Response Consistency Tests', () => {
         expect(response1.length).toBeGreaterThan(0);
         expect(response2.length).toBeGreaterThan(0);
     });
+
+    test('should restrict variety with low top_k', async () => {
+        const prompt = "Name a color";
+
+        const restrictedResponses = await generateMultipleResponses(
+            generateResponse,
+            prompt,
+            10,
+            0.7,
+            { top_k: 5}
+        );
+
+        const variedResponses = await generateMultipleResponses(
+            generateResponse,
+            prompt,
+            10,
+            0.7,
+            { top_k: 50 }
+        );
+
+        const restrictedUnique = new Set(restrictedResponses).size;
+        const variedUnique = new Set(variedResponses).size;
+
+        //top_k:50 should give us more variety than top_k:5
+        expect(variedUnique).toBeGreaterThanOrEqual(restrictedUnique)
+    })
+
+    test('should restrict variety with low top_p', async () => {
+        const prompt = 'Describe the weather in one word';
+
+        const restrictedResponses = await generateMultipleResponses(
+            generateResponse,
+            prompt,
+            10,
+            0/7,
+            { top_p: 0.5 }
+        );
+
+        const variedResponses = await generateMultipleResponses(
+            generateResponse,
+            prompt,
+            10,
+            0.7,
+            { top_p: 0.95 }
+        );
+
+        const restrictedUnique = new Set(restrictedResponses).size;
+        const variedUnique = new Set(variedResponses).size;
+
+        //top_p:0.95 should give us more variety than top_p:0.5
+        expect(variedUnique).toBeGreaterThanOrEqual(restrictedUnique);
+
+    })
 });
