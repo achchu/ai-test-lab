@@ -110,13 +110,13 @@ Limits the model to consider only the top K most likely next tokens:
 - Higher values (e.g., top_k: 50) = More options, more variety
 ```typescript
 // Restricted vocabulary
-const restricted = await generateResponse("Name a color", { 
+const restricted = await generateResponse("Name a colour", { 
   temperature: 0.7, 
   top_k: 5 
 });
 
 // Wider vocabulary
-const varied = await generateResponse("Name a color", { 
+const varied = await generateResponse("Name a colour", { 
   temperature: 0.7, 
   top_k: 50 
 });
