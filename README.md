@@ -14,15 +14,17 @@ As AI becomes ubiquitous, we often get overwhelmed by the complexity. This frame
 - **Apply existing knowledge**: Traditional testing principles work for AI too
 - **Understand fundamentals**: Temperature, seeds, and how they affect behavior
 
-**This is intentionally simplified.** Focuses on core concepts like `temperature` and `seed`, leaving advanced parameters (`top_k`, `top_p`) for future exploration.
+**This is intentionally simplified.** Focuses on core concepts like `temperature` and `seed`, with basic exploration of advanced parameters (`top_k`, `top_p`) and security testing.
 
 ---
 
 ## What Does This Framework Test?
 
-1. **Response Quality**
-2. **Consistency & Reproducibility**
-3. **Hallucination Detection**
+1. **Response Quality** - Basic functionality and performance
+2. **Consistency & Reproducibility** - Temperature, seed, top_k and top_p effects
+3. **Hallucination Detection** - Model uncertainty and truthfulness
+4. **Security - Prompt Injection** - LLMO1 from OWASP Top 10 for LLMs
+
 ---
 
 ## 🛠️ Getting Started
@@ -69,6 +71,7 @@ npm test
 npm test -- tests/integration/quality.test.ts
 npm test -- tests/integration/consistency.test.ts
 npm test -- tests/integration/hallucination.test.ts
+npm test -- tests/integration/security.test.ts
 ```
 
 ---
@@ -101,8 +104,45 @@ const r2 = await generateResponse("Hello", { temperature: 0.7, seed: 42 });
 // r1 === r2 (identical)
 ```
 
+### top_k
+Limits the model to consider only the top K most likely next tokens:
+- Lower values (e.g., top_k: 5) = More restrictive, less variety
+- Higher values (e.g., top_k: 50) = More options, more variety
+```typescript
+// Restricted vocabulary
+const restricted = await generateResponse("Name a color", { 
+  temperature: 0.7, 
+  top_k: 5 
+});
+
+// Wider vocabulary
+const varied = await generateResponse("Name a color", { 
+  temperature: 0.7, 
+  top_k: 50 
+});
+```
+### top_p (Nucleus Sampling)
+Dynamically selects tokens based on cumulative probability: 
+- Lower values (e.g., top_p: 0.5) = Only most likely tokens (50% probability mass)
+- Higher values (e.g., top_p: 0.95) = Includes less likely tokens (95% probability mass)
+```typescript
+// Conservative sampling
+const conservative = await generateResponse("Describe the weather", { 
+  temperature: 0.7, 
+  top_p: 0.5 
+});
+
+// More diverse sampling
+const diverse = await generateResponse("Describe the weather", { 
+  temperature: 0.7, 
+  top_p: 0.95 
+});
+```
+---
+
 ### Why Some Tests Fail
 AI is probabilistic. Test results vary based on:
 - Model version
 - Randomness (even at low temperature)
 - Prompt interpretation
+- Inherent model vulnerabilities
